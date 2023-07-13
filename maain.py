@@ -91,6 +91,7 @@ def receive():
     Label(recc,image=Rbg).place(x=-2,y=0)
 
     logo=PhotoImage(file='img/profile.png')
+<<<<<<< HEAD
     Label(recc,image=logo,bg='#f4fdfe').place(x=10,y=250)
 
     Label (recc, text="Receive",font=('arial',20),bg="#f4fdfe").place(x=100, y=280)
@@ -107,6 +108,9 @@ def receive():
     rr=Button(recc,text="Receive",compound=LEFT,image=imageicon,width=130,bg="#39c790",font="arial 14 bold",command=receiver)
     rr.place(x=20,y=500)
 
+=======
+    Label(recc,image=logo,bg='#f4fdfe').place(x=100,y=250)
+>>>>>>> db8eb1f398d22b8b5dbcfd082cfba392fc374a7d
 
 
 
