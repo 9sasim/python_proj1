@@ -67,6 +67,22 @@ def receive():
     recc.configure(bg="#f4fdfe")
     recc.resizable(False,False)
 
+
+
+    def receiver():
+        ID=SenderID.get()
+        filename1=InFile.get()
+
+        s=socket.socket()
+        port=8989
+        s.connect((ID,port))
+        file=open(filename1,'wb')
+        file_data=s.recv(1024)
+        file.write(file_data)
+        file.close()
+        print("File received sucessfully.")
+
+
     #icon
     icon1=PhotoImage(file="img/receive.png")
     recc.iconphoto(False,icon1)
@@ -75,15 +91,26 @@ def receive():
     Label(recc,image=Rbg).place(x=-2,y=0)
 
     logo=PhotoImage(file='img/profile.png')
-    Label(recc,image=logo,b g='#f4fdfe').place(x=100,y=250)
+    Label(recc,image=logo,bg='#f4fdfe').place(x=10,y=250)
+
+    Label (recc, text="Receive",font=('arial',20),bg="#f4fdfe").place(x=100, y=280)
+    Label (recc, text="Input sender id",font=('arial',10, 'bold'),bg="#f4fdfe").place(x=20, y=340)
+    SenderID = Entry (recc, width=25,fg="black", border=2, bg='white', font=('arial',15))
+    SenderID.place(x=20, y=370)
+    SenderID.focus()
+
+    Label (recc, text="Enter Filename ..",font=('arial',10, 'bold'),bg="#f4fdfe").place(x=20, y=420)
+    InFile= Entry (recc, width=25,fg="black", border=2, bg='white', font=('arial',15))
+    InFile.place(x=20, y=450)
+
+    imageicon=PhotoImage(file="img/arrow.png")
+    rr=Button(recc,text="Receive",compound=LEFT,image=imageicon,width=130,bg="#39c790",font="arial 14 bold",command=receiver)
+    rr.place(x=20,y=500)
+
 
 
 
     recc.mainloop()
-
-
-
-
 
 #icon 
 image_icon=PhotoImage(file="img/pp.png")
