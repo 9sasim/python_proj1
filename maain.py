@@ -107,7 +107,6 @@ def receive():
     rr=Button(recc,text="Receive",compound=LEFT,image=imageicon,width=130,bg="#39c790",font="arial 14 bold",command=receiver)
     rr.place(x=20,y=500)
 
-    Label(recc,image=logo,bg='#f4fdfe').place(x=100,y=250)
 
 
 
