@@ -175,7 +175,7 @@ register_frame.place_forget()
 
 # Create the "users" table if it doesn't exist
 c.execute("""
-    CREATE TABLE IF NOT EXISTS users (
+     CREATE TABLE IF NOT EXISTS users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         fullname VARCHAR(255),
         username VARCHAR(255),
