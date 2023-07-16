@@ -26,6 +26,7 @@ def sender():
     print(host)
     print('waiting for connection.......')
     conn,addr=s.accept()
+    print('Connection established with: ', addr)
     file=open(filename,'rb')
     file_data=file.read(1024)
     conn.send(file_data)
