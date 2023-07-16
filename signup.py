@@ -1,305 +1,87 @@
 from tkinter import *
 
-window = Tk()
+def register():
+    full_name = full_name_entry.get()
+    username = username_entry.get()
+    password = password_entry.get()
+    re_enter_password = re_enter_password_entry.get()
+    phone_number = phone_number_entry.get()
+    gender = gender_var.get()
+    
+    # Perform sign-up validation and registration logic here
+    
+    if password != re_enter_password:
+        register_label.config(text="Passwords do not match", fg="red")
+    elif len(password) < 8:
+        register_label.config(text="Password must be 8 characters long", fg="red")
+    else:
+        register_label.config(text="Registration successful", fg="green")
 
-height = 650
-width = 1240
-x = (window.winfo_screenwidth() // 2) - (width // 2)
-y = (window.winfo_screenheight() // 4) - (height // 4)
-window.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+# Create the GUI window
+root = Tk()
+root.title("Sign Up Page")
+root.configure(bg="#F0F0F0")  # Set background color
 
-window.configure(bg="#525561")
+# Create Header Label
+header_label = Label(root, text="Sign Up", font=("Arial", 18), fg="#333333", bg="#F0F0F0")
+header_label.pack(pady=20)
 
-# ================Background Image ====================
-backgroundImage = PhotoImage(file="assets\\image_1.png")
-bg_image = Label(
-    window,
-    image=backgroundImage,
-    bg="#525561"
-)
-bg_image.place(x=120, y=28)
+# Create Frame for Labels and Entry Fields
+frame = Frame(root, bg="#F0F0F0")
+frame.pack()
 
-# ================ Header Text Left ====================
-headerText_image_left = PhotoImage(file="assets\\headerText_image.png")
-headerText_image_label1 = Label(
-    bg_image,
-    image=headerText_image_left,
-    bg="#272A37"
-)
-headerText_image_label1.place(x=60, y=45)
+# Create Labels
+full_name_label = Label(frame, text="Full Name:", font=("Arial", 12), fg="#666666", bg="#F0F0F0")
+full_name_label.grid(row=0, column=0, padx=5, pady=5)
 
-headerText1 = Label(
-    bg_image,
-    text="Your Application Name",
-    fg="#FFFFFF",
-    font=("yu gothic ui bold", 20 * -1),
-    bg="#272A37"
-)
-headerText1.place(x=110, y=45)
+username_label = Label(frame, text="Username:", font=("Arial", 12), fg="#666666", bg="#F0F0F0")
+username_label.grid(row=1, column=0, padx=5, pady=5)
 
-# ================ Header Text Right ====================
-headerText_image_right = PhotoImage(file="assets\\headerText_image.png")
-headerText_image_label2 = Label(
-    bg_image,
-    image=headerText_image_right,
-    bg="#272A37"
-)
-headerText_image_label2.place(x=400, y=45)
+password_label = Label(frame, text="Password:", font=("Arial", 12), fg="#666666", bg="#F0F0F0")
+password_label.grid(row=2, column=0, padx=5, pady=5)
 
-headerText2 = Label(
-    bg_image,
-    anchor="nw",
-    text="Some Extra Text",
-    fg="#FFFFFF",
-    font=("yu gothic ui Bold", 20 * -1),
-    bg="#272A37"
-)
-headerText2.place(x=450, y=45)
+re_enter_password_label = Label(frame, text="Re-enter Password:", font=("Arial", 12), fg="#666666", bg="#F0F0F0")
+re_enter_password_label.grid(row=3, column=0, padx=5, pady=5)
 
-# ================ CREATE ACCOUNT HEADER ====================
-createAccount_header = Label(
-    bg_image,
-    text="Create new account",
-    fg="#FFFFFF",
-    font=("yu gothic ui Bold", 28 * -1),
-    bg="#272A37"
-)
-createAccount_header.place(x=75, y=121)
+phone_number_label = Label(frame, text="Phone Number:", font=("Arial", 12), fg="#666666", bg="#F0F0F0")
+phone_number_label.grid(row=4, column=0, padx=5, pady=5)
 
-# ================ ALREADY HAVE AN ACCOUNT TEXT ====================
-text = Label(
-    bg_image,
-    text="Already a member?",
-    fg="#FFFFFF",
-    font=("yu gothic ui Regular", 15 * -1),
-    bg="#272A37"
-)
-text.place(x=75, y=187)
+gender_label = Label(frame, text="Gender:", font=("Arial", 12), fg="#666666", bg="#F0F0F0")
+gender_label.grid(row=5, column=0, padx=5, pady=5)
 
-# ================ GO TO LOGIN ====================
-switchLogin = Button(
-    bg_image,
-    text="Login",
-    fg="#206DB4",
-    font=("yu gothic ui Bold", 15 * -1),
-    bg="#272A37",
-    bd=0,
-    cursor="hand2",
-    activebackground="#272A37",
-    activeforeground="#ffffff"
-)
-switchLogin.place(x=230, y=185, width=50, height=35)
+# Create Entry fields
+full_name_entry = Entry(frame, font=("Arial", 12))
+full_name_entry.grid(row=0, column=1, padx=5, pady=5)
 
-# ================ First Name Section ====================
-firstName_image = PhotoImage(file="assets\\input_img.png")
-firstName_image_Label = Label(
-    bg_image,
-    image=firstName_image,
-    bg="#272A37"
-)
-firstName_image_Label.place(x=80, y=242)
+username_entry = Entry(frame, font=("Arial", 12))
+username_entry.grid(row=1, column=1, padx=5, pady=5)
 
-firstName_text = Label(
-    firstName_image_Label,
-    text="First name",
-    fg="#FFFFFF",
-    font=("yu gothic ui SemiBold", 13 * -1),
-    bg="#3D404B"
-)
-firstName_text.place(x=25, y=0)
+password_entry = Entry(frame, show="*", font=("Arial", 12))
+password_entry.grid(row=2, column=1, padx=5, pady=5)
 
-firstName_icon = PhotoImage(file="assets\\name_icon.png")
-firstName_icon_Label = Label(
-    firstName_image_Label,
-    image=firstName_icon,
-    bg="#3D404B"
-)
-firstName_icon_Label.place(x=159, y=15)
+re_enter_password_entry = Entry(frame, show="*", font=("Arial", 12))
+re_enter_password_entry.grid(row=3, column=1, padx=5, pady=5)
 
-firstName_entry = Entry(
-    firstName_image_Label,
-    bd=0,
-    bg="#3D404B",
-    highlightthickness=0,
-    font=("yu gothic ui SemiBold", 16 * -1),
-)
-firstName_entry.place(x=8, y=17, width=140, height=27)
+phone_number_entry = Entry(frame, font=("Arial", 12))
+phone_number_entry.grid(row=4, column=1, padx=5, pady=5)
 
+# Create Gender Radio Buttons
+gender_var = StringVar()
+gender_var.set("Male")
 
-# ================ Last Name Section ====================
-lastName_image = PhotoImage(file="assets\\input_img.png")
-lastName_image_Label = Label(
-    bg_image,
-    image=lastName_image,
-    bg="#272A37"
-)
-lastName_image_Label.place(x=293, y=242)
+male_radio = Radiobutton(frame, text="Male", variable=gender_var, value="Male", font=("Arial", 12), fg="#666666", bg="#F0F0F0")
+male_radio.grid(row=5, column=1, padx=5, pady=5, sticky="w")
 
-lastName_text = Label(
-    lastName_image_Label,
-    text="Last name",
-    fg="#FFFFFF",
-    font=("yu gothic ui SemiBold", 13 * -1),
-    bg="#3D404B"
-)
-lastName_text.place(x=25, y=0)
+female_radio = Radiobutton(frame, text="Female", variable=gender_var, value="Female", font=("Arial", 12), fg="#666666", bg="#F0F0F0")
+female_radio.grid(row=5, column=1, padx=5, pady=5, sticky="e")
 
-lastName_icon = PhotoImage(file="assets\\name_icon.png")
-lastName_icon_Label = Label(
-    lastName_image_Label,
-    image=lastName_icon,
-    bg="#3D404B"
-)
-lastName_icon_Label.place(x=159, y=15)
+# Create Register Button
+register_button = Button(root, text="Register", command=register, font=("Arial", 12), fg="#FFFFFF", bg="#337AB7")
+register_button.pack(pady=10)
 
-lastName_entry = Entry(
-    lastName_image_Label,
-    bd=0,
-    bg="#3D404B",
-    highlightthickness=0,
-    font=("yu gothic ui SemiBold", 16 * -1),
-)
-lastName_entry.place(x=8, y=17, width=140, height=27)
+# Create Register Result Label
+register_label = Label(root, text="", font=("Arial", 12), fg="green", bg="#F0F0F0")
+register_label.pack(pady=5)
 
-# ================ Email Name Section ====================
-emailName_image = PhotoImage(file="assets\\email.png")
-emailName_image_Label = Label(
-    bg_image,
-    image=emailName_image,
-    bg="#272A37"
-)
-emailName_image_Label.place(x=80, y=311)
-
-emailName_text = Label(
-    emailName_image_Label,
-    text="Email account",
-    fg="#FFFFFF",
-    font=("yu gothic ui SemiBold", 13 * -1),
-    bg="#3D404B"
-)
-emailName_text.place(x=25, y=0)
-
-emailName_icon = PhotoImage(file="assets\\email-icon.png")
-emailName_icon_Label = Label(
-    emailName_image_Label,
-    image=emailName_icon,
-    bg="#3D404B"
-)
-emailName_icon_Label.place(x=370, y=15)
-
-emailName_entry = Entry(
-    emailName_image_Label,
-    bd=0,
-    bg="#3D404B",
-    highlightthickness=0,
-    font=("yu gothic ui SemiBold", 16 * -1),
-)
-emailName_entry.place(x=8, y=17, width=354, height=27)
-
-
-# ================ Password Name Section ====================
-passwordName_image = PhotoImage(file="assets\\input_img.png")
-passwordName_image_Label = Label(
-    bg_image,
-    image=passwordName_image,
-    bg="#272A37"
-)
-passwordName_image_Label.place(x=80, y=380)
-
-passwordName_text = Label(
-    passwordName_image_Label,
-    text="Password",
-    fg="#FFFFFF",
-    font=("yu gothic ui SemiBold", 13 * -1),
-    bg="#3D404B"
-)
-passwordName_text.place(x=25, y=0)
-
-passwordName_icon = PhotoImage(file="assets\\pass-icon.png")
-passwordName_icon_Label = Label(
-    passwordName_image_Label,
-    image=passwordName_icon,
-    bg="#3D404B"
-)
-passwordName_icon_Label.place(x=159, y=15)
-
-passwordName_entry = Entry(
-    passwordName_image_Label,
-    bd=0,
-    bg="#3D404B",
-    highlightthickness=0,
-    font=("yu gothic ui SemiBold", 16 * -1),
-)
-passwordName_entry.place(x=8, y=17, width=140, height=27)
-
-
-# ================ Confirm Password Name Section ====================
-confirm_passwordName_image = PhotoImage(file="assets\\input_img.png")
-confirm_passwordName_image_Label = Label(
-    bg_image,
-    image=confirm_passwordName_image,
-    bg="#272A37"
-)
-confirm_passwordName_image_Label.place(x=293, y=380)
-
-confirm_passwordName_text = Label(
-    confirm_passwordName_image_Label,
-    text="Confirm Password",
-    fg="#FFFFFF",
-    font=("yu gothic ui SemiBold", 13 * -1),
-    bg="#3D404B"
-)
-confirm_passwordName_text.place(x=25, y=0)
-
-confirm_passwordName_icon = PhotoImage(file="assets\\pass-icon.png")
-confirm_passwordName_icon_Label = Label(
-    confirm_passwordName_image_Label,
-    image=confirm_passwordName_icon,
-    bg="#3D404B"
-)
-confirm_passwordName_icon_Label.place(x=159, y=15)
-
-confirm_passwordName_entry = Entry(
-    confirm_passwordName_image_Label,
-    bd=0,
-    bg="#3D404B",
-    highlightthickness=0,
-    font=("yu gothic ui SemiBold", 16 * -1),
-)
-confirm_passwordName_entry.place(x=8, y=17, width=140, height=27)
-
-# =============== Submit Button ====================
-submit_buttonImage = PhotoImage(
-    file="assets\\button_1.png")
-submit_button = Button(
-    bg_image,
-    image=submit_buttonImage,
-    borderwidth=0,
-    highlightthickness=0,
-    relief="flat",
-    activebackground="#272A37",
-    cursor="hand2",
-)
-submit_button .place(x=130, y=460, width=333, height=65)
-
-# ================ Header Text Down ====================
-headerText_image_down = PhotoImage(file="assets\\headerText_image.png")
-headerText_image_label3 = Label(
-    bg_image,
-    image=headerText_image_down,
-    bg="#272A37"
-)
-headerText_image_label3.place(x=650, y=530)
-
-headerText3 = Label(
-    bg_image,
-    text="Powered by Sen Gideons",
-    fg="#FFFFFF",
-    font=("yu gothic ui bold", 20 * -1),
-    bg="#272A37"
-)
-headerText3.place(x=700, y=530)
-
-
-window.resizable(False, False)
-window.mainloop()
+# Run the GUI event loop
+root.mainloop()
