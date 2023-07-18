@@ -37,6 +37,7 @@ def login():
             # Open another Python file after successful login
             
             root.destroy()  # Close the login window
+            import maain
         else:
             messagebox.showerror("Login Error", "Invalid password")
     else:
