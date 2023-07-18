@@ -15,7 +15,7 @@ def select_file():
     global filename
     filename=filedialog.askopenfilename(initialdir=os.getcwd(),
                                         title='Select Image File',
-                                        filetypes=(('file_tyoe','*.txt'),('all files','*.*')))
+                                        filetypes=(('file_type','*.txt'),('all files','*.*')))
 
 def sender():
     s=socket.socket()
@@ -100,7 +100,7 @@ def receive():
     SenderID.place(x=20, y=370)
     SenderID.focus()
 
-    Label (recc, text="Enter Filename ..",font=('arial',10, 'bold'),bg="#f4fdfe").place(x=20, y=420)
+    Label (recc, text="Enter Filename for incoming file : ",font=('arial',10, 'bold'),bg="#f4fdfe").place(x=20, y=420)
     InFile= Entry (recc, width=25,fg="black", border=2, bg='white', font=('arial',15))
     InFile.place(x=20, y=450)
 
