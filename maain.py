@@ -3,7 +3,7 @@ import socket
 from tkinter import filedialog
 from tkinter import messagebox
 import os
-
+from PIL import Image, ImageTk
 root=Tk()
 root.title("ByteSync")
 root.geometry("450x560+500+200")
@@ -88,8 +88,12 @@ def receive():
     icon1=PhotoImage(file="img/receive.png")
     recc.iconphoto(False,icon1)
 
-    Rbg=PhotoImage(file="img/receiver.png")
-    Label(recc,image=Rbg).place(x=-2,y=0)
+    Rbg = Image.open("img/lll.png")
+    Rbg = Rbg.resize((479, 237), Image.ANTIALIAS)
+    Rbg = ImageTk.PhotoImage(Rbg)
+    Label(recc, image=Rbg).place(x=-15, y=0)
+
+
 
     logo=PhotoImage(file='img/profile.png')
     Label(recc,image=logo,bg='#f4fdfe').place(x=10,y=250)
@@ -134,11 +138,13 @@ rec.place(x=300,y=100)
 Label(root, text="Send", font=('Acumin Variable Concept', 17, 'bold'),bg="#f4fdfe").place(x=65,y=200)
 Label (root, text="Receive", font=('Acumin Variable Concept',17,'bold'),bg="#f4fdfe").place(x=300,y=200)
 
-
-bg=PhotoImage(file="img/background.png")
-Label(root,image=bg).place(x=-2,y=323)
-
-
+bg = Image.open("img/bak.png")
+# Resize the image to the desired dimensions
+new_width = 505
+new_height = 235
+bg = bg.resize((new_width, new_height), Image.ANTIALIAS)
+bg = ImageTk.PhotoImage(bg)
+Label(root, image=bg).place(x=-32, y=323)
 
 
 
