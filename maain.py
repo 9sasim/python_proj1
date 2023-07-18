@@ -18,19 +18,24 @@ def select_file():
                                         filetypes=(('file_type','*.txt'),('all files','*.*')))
 
 def sender():
-    s=socket.socket()
-    host=socket.gethostname()
-    port=8989
-    s.bind((host,port))
+    s = socket.socket()
+    host = socket.gethostname()
+    port = 8989
+    s.bind((host, port))
     s.listen(1)
     print(host)
-    print('waiting for connection.......')
-    conn,addr=s.accept()
-    print('Connection established with: ', addr)
-    file=open(filename,'rb')
-    file_data=file.read(1024)
-    conn.send(file_data)
-    print("Data has been transmitted sucessfully!!")
+    print('Waiting for connection.......')
+    conn, addr = s.accept()
+    print('Connection established with:', addr)
+    file = open(filename, 'rb')
+    while True:
+        file_data = file.read(4096)  # Read 4096 bytes from the file
+        if not file_data:
+            break
+        conn.send(file_data)
+    file.close()
+    print("Data has been transmitted successfully!")
+
 
 
 
@@ -71,17 +76,20 @@ def receive():
 
 
     def receiver():
-        ID=SenderID.get()
-        filename1=InFile.get()
+        ID = SenderID.get()
+        filename1 = InFile.get()
 
-        s=socket.socket()
-        port=8989
-        s.connect((ID,port))
-        file=open(filename1,'wb')
-        file_data=s.recv(1024)
-        file.write(file_data)
+        s = socket.socket()
+        port = 8989
+        s.connect((ID, port))
+        file = open(filename1, 'wb')
+        while True:
+            file_data = s.recv(4096)  # Receive 4096 bytes of data
+            if not file_data:
+                break
+            file.write(file_data)
         file.close()
-        print("File received sucessfully.")
+        print("File received successfully!")
 
 
     #icon
